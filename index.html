@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <style>
+        :root { --navy: #1a2238; --gold: #d4af37; --white: #ffffff; }
+        body { background: var(--navy); color: var(--white); font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; padding: 40px 20px; }
+        
+        .booking-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 30px; text-align: center; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; opacity: 0.7; }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        input:focus { border-color: var(--gold); outline: none; }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover { background: var(--gold); color: var(--navy); }
+
+        #success-msg { display: none; text-align: center; color: var(--gold); margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="booking-card">
+    <h2>Reserveren</h2>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){showSuccess();}"></iframe>
+    
+    <form action="JOUW_GOOGLE_FORM_POST_URL" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+        <div class="form-group">
+            <label>Naam</label>
+            <input type="text" name="entry.123456" required placeholder="Uw volledige naam">
+        </div>
+
+        <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" name="entry.789101" required placeholder="email@voorbeeld.nl">
+        </div>
+
+        <div class="form-group">
+            <label>Datum</label>
+            <input type="date" name="entry.112131" required>
+        </div>
+
+        <div class="form-group">
+            <label>Behandeling</label>
+            <select name="entry.141516">
+                <option value="Basis Pedicure">Basis Pedicure (€35)</option>
+                <option value="Luxe Wellness">Luxe Wellness (€55)</option>
+            </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Aanvraag Versturen</button>
+    </form>
+    <div id="success-msg">Bedankt! Wij nemen zo snel mogelijk contact op voor de bevestiging.</div>
+</div>
+
+<script>
+    var submitted = false;
+    function showSuccess() {
+        document.querySelector('form').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
